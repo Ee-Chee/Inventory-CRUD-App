@@ -1,0 +1,12 @@
+nav .navbar-nav li a {
+   color: rgb(255, 255, 255) !important;
+}
+
+.active {
+   background-color: rgb(192, 226, 43);
+}
+
+.logout:hover {
+   background-color: rgb(192, 226, 43);
+   cursor: pointer;
+}

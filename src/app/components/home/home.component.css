@@ -1,0 +1,12 @@
+::ng-deep .card-body {
+    padding: 0;
+}
+
+/* styling ng-bootstrap libraries: check browser tool to identify the desired class, add ::ng-deep for styling.
+Fade style won't apply if the content of accordion gets removed from the DOM.
+So, You need to add [destroyOnHide]='false' along with ngb-accordion selector. 
+Now, Content won't get removed from DOM when content gets hidden. */
+
+/* table {
+    width: auto;
+} */

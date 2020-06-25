@@ -1,0 +1,69 @@
+<div class="col-md-6 mx-auto">
+  <div class="card card-container">
+    <img
+      class="img-fluid"
+      src="../../../assets/eat-happy-sushi.jpg"
+      alt="eat-happy-sushi"
+    />
+    <form
+      (ngSubmit)="registrationForm.form.valid && onSubmit()"
+      #registrationForm="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          name="username"
+          [(ngModel)]="registrationFormData.username"
+          required
+          minlength="3"
+          maxlength="20"
+          #username="ngModel"
+        />
+        <div class="alert-danger" *ngIf="registrationForm.submitted && username.invalid">
+          <div *ngIf="username.errors.required">Username is required</div>
+          <div *ngIf="username.errors.minlength">
+            Username must be at least 3 characters
+          </div>
+          <div *ngIf="username.errors.maxlength">
+            Username must be at most 20 characters
+          </div>
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          [(ngModel)]="registrationFormData.password"
+          required
+          minlength="6"
+          #password="ngModel"
+        />
+        <div class="alert-danger" *ngIf="registrationForm.submitted && password.invalid">
+          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.minlength">
+            Password must be at least 6 characters
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+      </div>
+
+      <!-- [disabled]="!registrationForm.form.valid" -->
+
+      <div class="alert alert-warning" *ngIf="registrationForm.submitted && isSignUpFailed">
+        Signup failed! {{ errorMessage }}
+      </div>
+    </form>
+  </div>
+</div>
+  

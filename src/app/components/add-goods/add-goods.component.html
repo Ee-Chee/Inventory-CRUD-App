@@ -1,0 +1,288 @@
+<ngb-accordion [closeOthers]="true">
+    <ngb-panel title="Trockensortiment">
+      <ng-template ngbPanelContent>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover table-sm">
+                <thead>
+                <tr>
+                  <th scope="col">Artikel</th>
+                  <th scope="col">Einheit</th>
+                  <th scope="col">Anzahl</th>
+                  <th scope="col" colspan="2">Hinzufügen ( + )</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of dryGoods">
+                  <th scope="row">{{ item.item }}</th>
+                  <td>
+                    1 {{ item.unit }}{{item.subunit_n?': ':''}}{{ item.subunit_n }} {{ item.subunit }}
+                  </td>
+                  <td>{{ quantity[item.id - 1] | transformUnit:item.unit:item.subunit:item.subunit_n }}</td>
+                  <div *ngIf="item.subunit; then subUnit else inputUnit"></div>
+                  <ng-template #subUnit>
+                    <td style="text-align:center">
+                        <button type="button" class="btn btn-primary" (click)="unitAddition(item.id, item.subunit_n)">{{item.unit}}</button>    
+                    </td>
+                    <td style="text-align:center">
+                        <button type="button" class="btn btn-primary" (click)="subunitAddition(item.id)">{{item.subunit}}</button>
+                    </td>
+                  </ng-template>
+                  <ng-template #inputUnit>
+                    <td colspan="2" style="text-align:center">
+                        <input type="number" min="1" style="width:80px" [(ngModel)]="amount">
+                        <button type="button" class="btn btn-primary" (click)="addition(item.id)">{{item.unit}}</button> 
+                    </td>
+                  </ng-template>
+                </tr>
+                </tbody>
+              </table>
+        </div>
+      </ng-template>
+    </ngb-panel>
+
+    <ngb-panel title="Tiefkühlprodukte">
+        <ng-template ngbPanelContent>
+          <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover table-sm">
+                  <thead>
+                  <tr>
+                    <th scope="col">Artikel</th>
+                    <th scope="col">Einheit</th>
+                    <th scope="col">Anzahl</th>
+                    <th scope="col" colspan="2">Hinzufügen ( + )</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let item of frozenGoods">
+                    <th scope="row">{{ item.item }}</th>
+                    <td>
+                      1 {{ item.unit }}{{item.subunit_n?': ':''}}{{ item.subunit_n }} {{ item.subunit }}
+                    </td>
+                    <td>{{ quantity[item.id - 1] | transformUnit:item.unit:item.subunit:item.subunit_n }}</td>
+                    <div *ngIf="item.subunit; then subUnit else inputUnit"></div>
+                    <ng-template #subUnit>
+                      <td style="text-align:center">
+                          <button type="button" class="btn btn-primary" (click)="unitAddition(item.id, item.subunit_n)">{{item.unit}}</button>    
+                      </td>
+                      <td style="text-align:center">
+                          <button type="button" class="btn btn-primary" (click)="subunitAddition(item.id)">{{item.subunit}}</button>
+                      </td>
+                    </ng-template>
+                    <ng-template #inputUnit>
+                      <td colspan="2" style="text-align:center">
+                          <input type="number" min="1" style="width:80px" [(ngModel)]="amount">
+                          <button type="button" class="btn btn-primary" (click)="addition(item.id)">{{item.unit}}</button> 
+                      </td>
+                    </ng-template>
+                  </tr>
+                  </tbody>
+                </table>
+          </div>
+        </ng-template>
+      </ngb-panel>
+
+      <ngb-panel title="Kühl">
+        <ng-template ngbPanelContent>
+          <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover table-sm">
+                  <thead>
+                  <tr>
+                    <th scope="col">Artikel</th>
+                    <th scope="col">Einheit</th>
+                    <th scope="col">Anzahl</th>
+                    <th scope="col" colspan="2">Hinzufügen ( + )</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let item of coolGoods">
+                    <th scope="row">{{ item.item }}</th>
+                    <td>
+                      1 {{ item.unit }}{{item.subunit_n?': ':''}}{{ item.subunit_n }} {{ item.subunit }}
+                    </td>
+                    <td>{{ quantity[item.id - 1] | transformUnit:item.unit:item.subunit:item.subunit_n }}</td>
+                    <div *ngIf="item.subunit; then subUnit else inputUnit"></div>
+                    <ng-template #subUnit>
+                      <td style="text-align:center">
+                          <button type="button" class="btn btn-primary" (click)="unitAddition(item.id, item.subunit_n)">{{item.unit}}</button>    
+                      </td>
+                      <td style="text-align:center">
+                          <button type="button" class="btn btn-primary" (click)="subunitAddition(item.id)">{{item.subunit}}</button>
+                      </td>
+                    </ng-template>
+                    <ng-template #inputUnit>
+                      <td colspan="2" style="text-align:center">
+                          <input type="number" min="1" style="width:80px" [(ngModel)]="amount">
+                          <button type="button" class="btn btn-primary" (click)="addition(item.id)">{{item.unit}}</button> 
+                      </td>
+                    </ng-template>
+                  </tr>
+                  </tbody>
+                </table>
+          </div>
+        </ng-template>
+      </ngb-panel>
+
+      <ngb-panel title="Verpackungen">
+        <ng-template ngbPanelContent>
+          <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover table-sm">
+                  <thead>
+                  <tr>
+                    <th scope="col">Artikel</th>
+                    <th scope="col">Einheit</th>
+                    <th scope="col">Anzahl</th>
+                    <th scope="col" colspan="2">Hinzufügen ( + )</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let item of packingGoods">
+                    <th scope="row">{{ item.item }}</th>
+                    <td>
+                      1 {{ item.unit }}{{item.subunit_n?': ':''}}{{ item.subunit_n }} {{ item.subunit }}
+                    </td>
+                    <td>{{ quantity[item.id - 1] | transformUnit:item.unit:item.subunit:item.subunit_n }}</td>
+                    <div *ngIf="item.subunit; then subUnit else inputUnit"></div>
+                    <ng-template #subUnit>
+                      <td style="text-align:center">
+                          <button type="button" class="btn btn-primary" (click)="unitAddition(item.id, item.subunit_n)">{{item.unit}}</button>    
+                      </td>
+                      <td style="text-align:center">
+                          <button type="button" class="btn btn-primary" (click)="subunitAddition(item.id)">{{item.subunit}}</button>
+                      </td>
+                    </ng-template>
+                    <ng-template #inputUnit>
+                      <td colspan="2" style="text-align:center">
+                          <input type="number" min="1" style="width:80px" [(ngModel)]="amount">
+                          <button type="button" class="btn btn-primary" (click)="addition(item.id)">{{item.unit}}</button> 
+                      </td>
+                    </ng-template>
+                  </tr>
+                  </tbody>
+                </table>
+          </div>
+        </ng-template>
+      </ngb-panel>
+
+      <ngb-panel title="Reinigung">
+        <ng-template ngbPanelContent>
+          <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover table-sm">
+                  <thead>
+                  <tr>
+                    <th scope="col">Artikel</th>
+                    <th scope="col">Einheit</th>
+                    <th scope="col">Anzahl</th>
+                    <th scope="col" colspan="2">Hinzufügen ( + )</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let item of cleaningGoods">
+                    <th scope="row">{{ item.item }}</th>
+                    <td>
+                      1 {{ item.unit }}{{item.subunit_n?': ':''}}{{ item.subunit_n }} {{ item.subunit }}
+                    </td>
+                    <td>{{ quantity[item.id - 1] | transformUnit:item.unit:item.subunit:item.subunit_n }}</td>
+                    <div *ngIf="item.subunit; then subUnit else inputUnit"></div>
+                    <ng-template #subUnit>
+                      <td style="text-align:center">
+                          <button type="button" class="btn btn-primary" (click)="unitAddition(item.id, item.subunit_n)">{{item.unit}}</button>    
+                      </td>
+                      <td style="text-align:center">
+                          <button type="button" class="btn btn-primary" (click)="subunitAddition(item.id)">{{item.subunit}}</button>
+                      </td>
+                    </ng-template>
+                    <ng-template #inputUnit>
+                      <td colspan="2" style="text-align:center">
+                          <input type="number" min="1" style="width:80px" [(ngModel)]="amount">
+                          <button type="button" class="btn btn-primary" (click)="addition(item.id)">{{item.unit}}</button> 
+                      </td>
+                    </ng-template>
+                  </tr>
+                  </tbody>
+                </table>
+          </div>
+        </ng-template>
+      </ngb-panel>
+
+      <ngb-panel title="Sideproducts">
+        <ng-template ngbPanelContent>
+          <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover table-sm">
+                  <thead>
+                  <tr>
+                    <th scope="col">Artikel</th>
+                    <th scope="col">Einheit</th>
+                    <th scope="col">Anzahl</th>
+                    <th scope="col" colspan="2">Hinzufügen ( + )</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let item of sideProducts">
+                    <th scope="row">{{ item.item }}</th>
+                    <td>
+                      1 {{ item.unit }}{{item.subunit_n?': ':''}}{{ item.subunit_n }} {{ item.subunit }}
+                    </td>
+                    <td>{{ quantity[item.id - 1] | transformUnit:item.unit:item.subunit:item.subunit_n }}</td>
+                    <div *ngIf="item.subunit; then subUnit else inputUnit"></div>
+                    <ng-template #subUnit>
+                      <td style="text-align:center">
+                          <button type="button" class="btn btn-primary" (click)="unitAddition(item.id, item.subunit_n)">{{item.unit}}</button>    
+                      </td>
+                      <td style="text-align:center">
+                          <button type="button" class="btn btn-primary" (click)="subunitAddition(item.id)">{{item.subunit}}</button>
+                      </td>
+                    </ng-template>
+                    <ng-template #inputUnit>
+                      <td colspan="2" style="text-align:center">
+                          <input type="number" min="1" style="width:80px" [(ngModel)]="amount">
+                          <button type="button" class="btn btn-primary" (click)="addition(item.id)">{{item.unit}}</button> 
+                      </td>
+                    </ng-template>
+                  </tr>
+                  </tbody>
+                </table>
+          </div>
+        </ng-template>
+      </ngb-panel>
+
+      <ngb-panel title="Sonstiges">
+        <ng-template ngbPanelContent>
+          <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover table-sm">
+                  <thead>
+                  <tr>
+                    <th scope="col">Artikel</th>
+                    <th scope="col">Einheit</th>
+                    <th scope="col">Anzahl</th>
+                    <th scope="col" colspan="2">Hinzufügen ( + )</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let item of otherProducts">
+                    <th scope="row">{{ item.item }}</th>
+                    <td>
+                      1 {{ item.unit }}{{item.subunit_n?': ':''}}{{ item.subunit_n }} {{ item.subunit }}
+                    </td>
+                    <td>{{ quantity[item.id - 1] | transformUnit:item.unit:item.subunit:item.subunit_n }}</td>
+                    <div *ngIf="item.subunit; then subUnit else inputUnit"></div>
+                    <ng-template #subUnit>
+                      <td style="text-align:center">
+                          <button type="button" class="btn btn-primary" (click)="unitAddition(item.id, item.subunit_n)">{{item.unit}}</button>    
+                      </td>
+                      <td style="text-align:center">
+                          <button type="button" class="btn btn-primary" (click)="subunitAddition(item.id)">{{item.subunit}}</button>
+                      </td>
+                    </ng-template>
+                    <ng-template #inputUnit>
+                      <td colspan="2" style="text-align:center">
+                          <input type="number" min="1" style="width:80px" [(ngModel)]="amount">
+                          <button type="button" class="btn btn-primary" (click)="addition(item.id)">{{item.unit}}</button> 
+                      </td>
+                    </ng-template>
+                  </tr>
+                  </tbody>
+                </table>
+          </div>
+        </ng-template>
+      </ngb-panel>
+  </ngb-accordion>

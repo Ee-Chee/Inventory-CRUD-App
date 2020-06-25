@@ -1,17 +1,32 @@
-<div>
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">bezKoder</a>
-    <div class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a routerLink="tutorials" class="nav-link">Tutorials</a>
+<div id="inventory-app">
+  <nav class="navbar navbar-expand navbar-dark" style="background-color: #ff1a8c">
+    <a href="#" class="navbar-brand">Inventory </a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" *ngIf="!isLoggedIn" routerLink="registration">Sign Up</a>
       </li>
-      <li class="nav-item">
-        <a routerLink="add" class="nav-link">Add</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" *ngIf="isLoggedIn" routerLink="home">Home</a>
       </li>
-    </div>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" *ngIf="isLoggedIn" routerLink="add">Add</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="login">Login</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a class="nav-link logout" (click)="logout()">Log-out</a>
+      </li>
+    </ul>
   </nav>
 
-  <div class="container mt-3">
+  <div class="container mt-4">
     <router-outlet></router-outlet>
   </div>
 </div>
