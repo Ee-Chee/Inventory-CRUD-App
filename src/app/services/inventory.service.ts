@@ -31,6 +31,10 @@ export class InventoryService {
         return this.http.post(`${baseUrl}/authentication`, data, {withCredentials: true});
     }
 
+    initializeQuantity(data) {
+        return this.http.post(`${baseUrl}/initialization`, data, {withCredentials: true});
+    }
+
     getQuantity() {
         return this.http.get(`${baseUrl}/amount`, {withCredentials: true});
     }

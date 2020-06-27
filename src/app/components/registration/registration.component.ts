@@ -11,6 +11,7 @@ export class RegistrationComponent implements OnInit {
   registrationFormData: any = {};
   isSignUpFailed = false;
   errorMessage = '';
+  initialQuantity: number[];
 
   constructor(private inventoryService: InventoryService, private router: Router) { }
 
@@ -36,7 +37,13 @@ export class RegistrationComponent implements OnInit {
             this.isSignUpFailed = true;
             this.errorMessage = data['errMsg'];
           } else {
-            window.location.replace('/home');
+            this.initialQuantity = new Array(146).fill(0);
+            this.inventoryService.initializeQuantity({quantityArray: this.initialQuantity}).subscribe(
+                data => {
+                    console.log(data['message']);
+                    window.location.replace('/home');
+                }
+            );
             //reloading page is required to trigger isLoggedIn boolean. 
             //However, do not use navigate /home and reload page here. It doesnt work because of async navigation and reloading happens on only /registration.
             //During reloading, appcomponent is executed first before '/home' is activated. That means it is still on '/registration' page.
