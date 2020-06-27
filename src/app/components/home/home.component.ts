@@ -123,9 +123,18 @@ export class HomeComponent implements OnInit {
                 data => {
                     console.log(data['message']);
                     this.quantity = this.tempQuantity;
-                    this.amount = 1;
                 }
             );
         }
+    }
+
+    changeAmount($event) { 
+        //event is used here instead of two way binding because it updates also the other rows amount as a number is entered.
+        //[(ngModel)]="amount" 
+        //keyup event for handling key-in number
+        //change event for handling arrow change
+        // console.log($event.target.value);
+        this.amount = parseInt($event.target.value); //parse the returned string into number! 
+        //also used to handle float numbers, returning them to int. console.log(parseInt"1.77"); => 1
     }
 }

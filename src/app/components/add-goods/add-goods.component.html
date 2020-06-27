@@ -29,7 +29,7 @@
                   </ng-template>
                   <ng-template #inputUnit>
                     <td colspan="2" style="text-align:center">
-                        <input type="number" min="1" style="width:80px" [(ngModel)]="amount">
+                        <input type="number" min="1" style="width:80px" value="1" (keyup)="changeAmount($event)" (change)="changeAmount($event)">
                         <button type="button" class="btn btn-primary" (click)="addition(item.id)">{{item.unit}}</button> 
                     </td>
                   </ng-template>
@@ -70,7 +70,7 @@
                     </ng-template>
                     <ng-template #inputUnit>
                       <td colspan="2" style="text-align:center">
-                          <input type="number" min="1" style="width:80px" [(ngModel)]="amount">
+                          <input type="number" min="1" style="width:80px" value="1" (keyup)="changeAmount($event)" (change)="changeAmount($event)">
                           <button type="button" class="btn btn-primary" (click)="addition(item.id)">{{item.unit}}</button> 
                       </td>
                     </ng-template>
@@ -111,7 +111,7 @@
                     </ng-template>
                     <ng-template #inputUnit>
                       <td colspan="2" style="text-align:center">
-                          <input type="number" min="1" style="width:80px" [(ngModel)]="amount">
+                          <input type="number" min="1" style="width:80px" value="1" (keyup)="changeAmount($event)" (change)="changeAmount($event)">
                           <button type="button" class="btn btn-primary" (click)="addition(item.id)">{{item.unit}}</button> 
                       </td>
                     </ng-template>
@@ -152,7 +152,7 @@
                     </ng-template>
                     <ng-template #inputUnit>
                       <td colspan="2" style="text-align:center">
-                          <input type="number" min="1" style="width:80px" [(ngModel)]="amount">
+                          <input type="number" min="1" style="width:80px" value="1" (keyup)="changeAmount($event)" (change)="changeAmount($event)">
                           <button type="button" class="btn btn-primary" (click)="addition(item.id)">{{item.unit}}</button> 
                       </td>
                     </ng-template>
@@ -193,7 +193,7 @@
                     </ng-template>
                     <ng-template #inputUnit>
                       <td colspan="2" style="text-align:center">
-                          <input type="number" min="1" style="width:80px" [(ngModel)]="amount">
+                          <input type="number" min="1" style="width:80px" value="1" (keyup)="changeAmount($event)" (change)="changeAmount($event)">
                           <button type="button" class="btn btn-primary" (click)="addition(item.id)">{{item.unit}}</button> 
                       </td>
                     </ng-template>
@@ -234,7 +234,7 @@
                     </ng-template>
                     <ng-template #inputUnit>
                       <td colspan="2" style="text-align:center">
-                          <input type="number" min="1" style="width:80px" [(ngModel)]="amount">
+                          <input type="number" min="1" style="width:80px" value="1" (keyup)="changeAmount($event)" (change)="changeAmount($event)">
                           <button type="button" class="btn btn-primary" (click)="addition(item.id)">{{item.unit}}</button> 
                       </td>
                     </ng-template>
@@ -275,7 +275,7 @@
                     </ng-template>
                     <ng-template #inputUnit>
                       <td colspan="2" style="text-align:center">
-                          <input type="number" min="1" style="width:80px" [(ngModel)]="amount">
+                          <input type="number" min="1" style="width:80px" value="1" (keyup)="changeAmount($event)" (change)="changeAmount($event)">
                           <button type="button" class="btn btn-primary" (click)="addition(item.id)">{{item.unit}}</button> 
                       </td>
                     </ng-template>

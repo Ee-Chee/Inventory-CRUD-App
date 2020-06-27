@@ -69,15 +69,18 @@ export class AddGoodsComponent implements OnInit {
         );
     }
 
-    addition(itemId){
+    addition(itemId) {
         this.tempQuantity[itemId - 1] = this.quantity[itemId - 1] + this.amount;
 
         this.inventoryService.updateQuantity({quantityArray: this.tempQuantity}).subscribe(
             data => {
                 console.log(data['message']);
                 this.quantity = this.tempQuantity;
-                this.amount = 1;
             }
         );
+    }
+
+    changeAmount($event) { 
+        this.amount = parseInt($event.target.value);
     }
 }

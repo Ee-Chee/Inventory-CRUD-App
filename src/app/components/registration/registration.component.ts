@@ -37,7 +37,7 @@ export class RegistrationComponent implements OnInit {
             this.isSignUpFailed = true;
             this.errorMessage = data['errMsg'];
           } else {
-            this.initialQuantity = new Array(146).fill(0);
+            this.initialQuantity = new Array(162).fill(0);
             this.inventoryService.initializeQuantity({quantityArray: this.initialQuantity}).subscribe(
                 data => {
                     console.log(data['message']);
