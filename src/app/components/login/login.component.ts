@@ -18,11 +18,11 @@ export class LoginComponent implements OnInit {
     this.inventoryService.verifyUser()
       .subscribe(
         data => {
-          if (data['userId']) {
-            //To prevent user from surfing back /login when they already got logged-in (cookies saved).
-            //reloading page is not required. isLoggedIn is already verified by appcomponent
-            this.router.navigate(['/home']); 
-          }
+            if (data['userId']) {
+                //To prevent user from surfing back /login when they already got logged-in (cookies saved).
+                //reloading page is not required. isLoggedIn is already verified by appcomponent
+                this.router.navigate(['/home']); 
+            }
         }
     )
   }

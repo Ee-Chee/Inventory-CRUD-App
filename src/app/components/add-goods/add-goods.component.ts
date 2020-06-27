@@ -76,6 +76,7 @@ export class AddGoodsComponent implements OnInit {
             data => {
                 console.log(data['message']);
                 this.quantity = this.tempQuantity;
+                this.amount = 1;
             }
         );
     }
