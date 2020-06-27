@@ -27,9 +27,13 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
         this.inventoryService.getQuantity()
             .subscribe(data => {
-                console.log("dont forget this: ", data);
-                this.quantity = data['quantity_array'];
-                this.tempQuantity = [...this.quantity];
+                if(data['quantity_array'].length == 0){
+                    this.quantity = new Array(146).fill(0);
+                    console.log("hereeeeet", this.quantity);
+                } else {
+                    this.quantity = data['quantity_array'];
+                    this.tempQuantity = [...this.quantity];
+                };
             });
 
         this.inventoryService.getGoods().pipe(map(arrayData => {
