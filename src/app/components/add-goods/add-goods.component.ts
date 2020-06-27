@@ -26,8 +26,13 @@ export class AddGoodsComponent implements OnInit {
     ngOnInit() {
         this.inventoryService.getQuantity()
             .subscribe(data => {
-                this.quantity = data['quantity_array'];
-                this.tempQuantity = [...this.quantity];
+                if(data['quantity_array'].length == 0){
+                    this.quantity = new Array(146).fill(0);
+                    this.tempQuantity = [...this.quantity];
+                } else {
+                    this.quantity = data['quantity_array'];
+                    this.tempQuantity = [...this.quantity];
+                };
             });
 
         this.inventoryService.getGoods().pipe(map(arrayData => {

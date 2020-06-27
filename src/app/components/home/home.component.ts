@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit {
             .subscribe(data => {
                 if(data['quantity_array'].length == 0){
                     this.quantity = new Array(146).fill(0);
-                    console.log("hereeeeet", this.quantity);
                 } else {
                     this.quantity = data['quantity_array'];
                     this.tempQuantity = [...this.quantity];
