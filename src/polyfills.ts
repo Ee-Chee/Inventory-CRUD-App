@@ -3,7 +3,7 @@
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
-
+import 'whatwg-fetch';
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
