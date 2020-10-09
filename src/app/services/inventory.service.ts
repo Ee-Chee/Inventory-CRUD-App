@@ -14,39 +14,39 @@ export class InventoryService {
     userId: number;
 
     constructor(private http: HttpClient) { }
-    
+
     verifyUser() {
-        return this.http.get(`${baseUrl}/welcome`, {withCredentials: true});
+        return this.http.get(`${baseUrl}/welcome`, { withCredentials: true });
     } //get cookie userId
 
     logoutUser() {
-        return this.http.get(`${baseUrl}/goodbye`, {withCredentials: true});
+        return this.http.get(`${baseUrl}/goodbye`, { withCredentials: true });
     } //delete cookies
 
     createUser(data) {
-        return this.http.post(`${baseUrl}/registration`, data, {withCredentials: true});
+        return this.http.post(`${baseUrl}/registration`, data, { withCredentials: true });
     }
 
     authenticateUser(data) {
-        return this.http.post(`${baseUrl}/authentication`, data, {withCredentials: true});
+        return this.http.post(`${baseUrl}/authentication`, data, { withCredentials: true });
     }
 
     initializeQuantity(data) {
-        return this.http.post(`${baseUrl}/initialization`, data, {withCredentials: true});
+        return this.http.post(`${baseUrl}/initialization`, data, { withCredentials: true });
     }
 
     getQuantity() {
-        return this.http.get(`${baseUrl}/amount`, {withCredentials: true});
+        return this.http.get(`${baseUrl}/amount`, { withCredentials: true });
     }
 
-    getGoods(): Observable<Goods[]>{
-        return this.http.get<Goods[]>(`${baseUrl}/goods`, {withCredentials: true});
+    getGoods(): Observable<Goods[]> {
+        return this.http.get<Goods[]>(`${baseUrl}/goods`, { withCredentials: true });
     }
     //By default HttpClient return Observable<Object>. But in our case here, an array of objects is returned.
     //Use interface and redefine data type for http shall solve the typescript compiler error
 
     updateQuantity(data) {
-        return this.http.post(`${baseUrl}/changeAmount`, data, {withCredentials: true});
+        return this.http.post(`${baseUrl}/changeAmount`, data, { withCredentials: true });
     }
 
 }
