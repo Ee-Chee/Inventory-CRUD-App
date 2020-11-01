@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InventoryService } from 'src/app/services/inventory.service';
+import { TokenStorageService } from '../../services/token-storage.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,36 +13,25 @@ export class LoginComponent implements OnInit {
     isLoginFailed = false;
     errorMessage = '';
 
-    constructor(private inventoryService: InventoryService, private router: Router) { }
+    constructor(private router: Router, private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
     ngOnInit() {
-        this.inventoryService.verifyUser()
-            .subscribe(
-                data => {
-                    if (data['userId']) {
-                        //To prevent user from surfing back /login when they already got logged-in (cookies saved).
-                        //reloading page is not required. isLoggedIn is already verified by appcomponent
-                        this.router.navigate(['/home']);
-                    }
-                }
-            )
+        if (this.tokenStorage.getToken()) {
+            this.router.navigate(['/home']);
+        }
     }
 
     onSubmit() {
-        this.inventoryService.authenticateUser(this.loginFormData)
+        this.authService.login(this.loginFormData)
             .subscribe(
                 data => {
-                    // console.log("testf3", data);
                     if (data['errMsg']) {
                         this.isLoginFailed = true;
                         this.errorMessage = data['errMsg'];
                     } else {
+                        this.tokenStorage.saveToken(data.accessToken);
                         window.location.replace('/home');
-                        // reloading page is required to trigger isLoggedIn boolean. 
-                        // However, do not use navigate /home and reload page here. It doesnt work because of async navigation and reloading happens on only /login.
-                        // During reloading, appcomponent is executed first before '/home' is activated. That means it is still on '/login' page.
-                    } //else is required. Otherwise it navigates to home eventhough login failed. 
-
+                    }
                 },
                 err => {
                     console.log(err);

@@ -12,24 +12,25 @@ import { LoginComponent } from './components/login/login.component';
 import { AddGoodsComponent } from './components/add-goods/add-goods.component';
 
 import { TransformUnitPipe } from './pipes/transform-unit';
+import { authInterceptorProviders } from './helpers/auth.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    RegistrationComponent,
-    HomeComponent,
-    LoginComponent,
-    TransformUnitPipe,
-    AddGoodsComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    NgbModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        RegistrationComponent,
+        HomeComponent,
+        LoginComponent,
+        TransformUnitPipe,
+        AddGoodsComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        NgbModule
+    ],
+    providers: [authInterceptorProviders],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
